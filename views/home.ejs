@@ -1,0 +1,835 @@
+<!-- <!DOCTYPE html> 
+<html> 
+<title>Stripe Payment Demo</title> 
+<body> 
+    <h3>Welcome to Payment Gateway</h3> 
+    <form action="payment" method="POST"> 
+    <script
+        src="//checkout.stripe.com/v2/checkout.js"
+        class="stripe-button"
+        data-key="<%= key %>" 
+        data-amount="7000" 
+        data-currency="usd" 
+        data-name="Gautam Sharma" 
+        data-description="Buy React.js Complete Course" 
+        data-locale="auto" > 
+        </script> 
+    </form> 
+</body> 
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation website</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Patrick+Hand&family=Rampart+One&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .frontimage {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: auto;
+        }
+
+        button,
+        body {
+            font-family: 'Klee One', cursive;
+        }
+
+        .frontimage {
+            min-height: 100vh;
+            min-width: 100%;
+            background: url(https://www.kika.nl/sites/default/files/assets/images/headers/steuhn%20website_0.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            padding-left: 5%;
+            padding-right: 5%;
+            position: relative;
+            font-family: 'Klee One', cursive;
+        }
+
+        @media screen and (max-width:768px) {
+            .frontimage {
+                width: 100%;
+                padding: 0 15px;
+            }
+        }
+
+        .menu-bar {
+            display: block;
+            width: 100%;
+            background: transparent;
+            line-height: 1.6em;
+            font-weight: 400;
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            margin: auto auto;
+            z-index: 2;
+            font-family: 'Klee One', cursive;
+        }
+
+        .menu-bar ul {
+            list-style-type: none;
+            margin: 0 auto;
+            padding-left: 0;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            background: transparent;
+        }
+
+        .menu-bar li {
+            display: inline-block;
+        }
+
+        .menu-bar li a {
+            display: block;
+            min-width: 140px;
+            text-align: center;
+            color: #fff;
+            text-transform: uppercase;
+            background: transparent;
+            text-decoration: none;
+            margin-left: -5px;
+            padding: 10px 0;
+            text-shadow: 0 0 1px black;
+            font-weight: 800;
+            transition: all 0.4s ease 0s;
+        }
+
+        .menu-bar li:hover a {
+            color: white;
+            background-color: black;
+            border-radius: 50px;
+        }
+
+        .menu-bar .show-menu {
+            text-decoration: none;
+            color: #fff;
+            background: transparent;
+            text-align: center;
+            padding: 10px 15px;
+            display: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .menu-bar .show-menu span {
+            padding-left: 25px;
+        }
+
+        .menu-bar input[type=checkbox] {
+            display: none;
+        }
+
+        .menu-bar input[type=checkbox]:checked~#menu {
+            display: block;
+        }
+
+        @media screen and (max-width : 800px) {
+            .menu-bar .lines {
+                border-bottom: 15px double #f8f8f8;
+                border-top: 5px solid #f8f8f8;
+                content: "";
+                height: 5px;
+                width: 20px;
+                padding-right: 15px;
+                float: right;
+            }
+
+            .menu-bar ul {
+                position: static;
+                display: none;
+            }
+
+            .menu-bar li {
+                margin-bottom: 1px;
+            }
+
+            .menu-bar ul li,
+            .mobile-menu li a {
+                width: 100%;
+            }
+
+            .menu-bar .show-menu {
+                display: block;
+            }
+        }
+
+        .frontimage h1 {
+            letter-spacing: 2px;
+            margin-top: 230px;
+            display: inline-block;
+            font-size: 5rem;
+            font-variant: small-caps;
+            color: rgb(110, 81, 18);
+            width: 50%;
+            line-height: 4.2rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 2px black;
+        }
+
+        .frontimage h1 span {
+            color: rgb(41, 192, 11);
+        }
+
+        .frontimage p {
+            color: black;
+            width: 50%;
+            text-shadow: 0 0 1px black;
+            margin-top: 15px;
+            text-shadow: 1px 1px 1px rgb(10, 61, 10);
+            font-size: large;
+        }
+
+        .frontimage .container .logo {
+            color: rgb(61, 160, 173);
+
+            font-family: 'Patrick Hand', cursive;
+            font-size: 25px;
+            font-weight: bold;
+            font-variant: small-caps;
+            font-stretch: ultra-condensed;
+            text-shadow: 1px 1px 1px black;
+            letter-spacing: 2px;
+        }
+
+        #aboutus {
+            position: relative;
+            min-height: 100vh;
+            padding: 50px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(-45deg, #2ae923, #0eaa4a, #23d5ab, #2370d5);
+            background-size: cover;
+        }
+
+        #aboutus .box {
+            background: rgb(202, 233, 188);
+            margin: auto;
+            margin-top: 5%;
+            max-width: 30%;
+            padding: 20px 50px;
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.12), 10px 5px 5px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        #aboutus .box:hover {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            animation-name: example;
+            animation-duration: 0.25s;
+            border-left: 8px solid rgb(14, 71, 6);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+
+        #aboutus .btn .donatetitle {
+            z-index: 1;
+            margin-top: 10px;
+            border: none;
+            background: rgb(37, 77, 5);
+            color: #f0f0f2;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .btn .pay {
+            width: 100%;
+            height: 100%;
+            padding: 2px;
+            margin-top: -55px;
+            opacity: 0;
+        }
+
+        .btn .pay form {
+            width: 100%;
+            height: 100%;
+            transform: scale(2);
+        }
+
+        .btn:hover {
+            border-right: 2px solid black;
+            transform: scale(1.1);
+        }
+
+        #aboutus h1 {
+            text-transform: uppercase;
+            color: rgb(13, 94, 13);
+            text-shadow: 1px 1px 2px rgb(184, 167, 20), 0 0 1em rgb(12, 83, 36), 0 0 0.2em rgb(14, 70, 9);
+            font-size: 23px;
+        }
+
+        #aboutus p {
+            text-align: start;
+            font-size: 19px;
+            text-shadow: 1px 1px 0.5px black;
+        }
+
+        @media screen and (max-width : 800px) {
+            #aboutus {
+                position: relative;
+                min-height: 100vh;
+                padding: 0px 0px;
+
+                background-size: cover;
+            }
+        }
+
+        .programs .container .title {
+            width: 300px;
+            color: ivory;
+            text-shadow: rgb(57, 141, 61);
+            text-align: centre;
+            font-size: 200;
+            margin: 0 auto 50px;
+            position: relative;
+            padding: 10px 0;
+            text-transform: uppercase;
+        }
+
+        .programs {
+            position: relative;
+            min-height: 100vh;
+            padding: 50px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(-45deg, #2ae923, #0eaa4a, #23d5ab, #2370d5);
+            background-size: cover;
+        }
+
+        .programs .boxcontainer {
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            width: 70%;
+            justify-content: space-between;
+        }
+
+        .programs .programbox {
+            width: 280px;
+            height: 360px;
+            padding: 2rem 1rem;
+            background: #fff;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            box-shadow: 1px 7px 10px rgba(0, 0, 0, 0.5);
+            transition: 0.5s ease-in-out;
+            border-radius: 15px 5px 30px 5px;
+        }
+
+        #program .container {
+            font-family: 'Klee One', cursive;
+            text-shadow: 2px 2px 2px black, 2px 2px 2px green;
+            color: lawngreen;
+        }
+
+        .programs .programbox:hover {
+            transform: translateY(20px);
+        }
+
+        .programs .programbox::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(202, 69, 131, 0.5), rgb(201, 112, 61));
+            z-index: 2;
+            transition: 0.5s all;
+            opacity: 0;
+        }
+
+        .programs .programbox:hover:before {
+            opacity: 1;
+        }
+
+        .programs .programbox img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .programs .programbox .programinfo {
+            position: relative;
+            z-index: 3;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.5s all;
+        }
+
+        .programs .programbox:hover .programinfo {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+
+        .programs .programbox .programinfo h1 {
+            margin: 0;
+            font-family: 'Klee One', cursive;
+            text-shadow: 2px 2px 2px black;
+        }
+
+        .programs .programbox .programinfo p {
+            letter-spacing: 1px;
+            font-size: 15px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+        }
+
+        .programs .programbox .programinfo p span {
+            color: rgb(50, 61, 10);
+            background-color: yellowgreen;
+            font-weight: bold;
+            border-radius: 100%;
+        }
+
+        @media screen and (max-width : 800px) {
+            .programs .container .title {
+                width: 300px;
+                color: ivory;
+                text-shadow: rgb(57, 141, 61);
+                text-align: centre;
+                font-size: 200;
+                margin: 0 auto 50px;
+                position: relative;
+                padding: 10px 0;
+                text-transform: uppercase;
+            }
+        }
+
+
+        .contact {
+            position: relative;
+            font-family: 'Klee One', cursive;
+            min-height: 100vh;
+            padding: 50px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(-45deg, #2ae923, #0eaa4a, #23d5ab, #2370d5);
+            background-size: cover;
+        }
+
+        .contact .contactus {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .contact .contactus h2 {
+            font-size: 36px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .contact .contactus p {
+            font-weight: 300;
+            color: #fff;
+        }
+
+        .contain {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .contact .contain .contactInfo {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contain .contactInfo .box {
+            position: relative;
+            padding: 20px 0;
+            display: flex;
+        }
+
+        .contain .contactInfo .box .icon {
+            min-width: 60px;
+            height: 60px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        .contain .contactInfo .box .text {
+            display: flex;
+            margin-left: 20px;
+            font-size: 16px;
+            color: #fff;
+            flex-direction: column;
+            font-weight: 300;
+        }
+
+        .contain .contactInfo .box .text h3 {
+            font-weight: 300;
+            color: #031113;
+        }
+
+        input:focus~label,
+        textarea:focus~label,
+        input:valid~label,
+        textarea:valid~label {
+            font-size: 0.75em;
+            color: #999;
+            top: -5px;
+            -webkit-transition: all 0.225s ease;
+            transition: all 0.225s ease;
+
+        }
+
+        .styled-input {
+            float: left;
+            width: 280px;
+            margin: 1rem 0;
+            position: relative;
+            border-radius: 20px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .styled-input {
+                width: 100%;
+            }
+        }
+
+        .styled-input label {
+            color: #999;
+            padding: 1.3rem 30px 1rem 30px;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            -webkit-transition: all 0.25s ease;
+            transition: all 0.25s ease;
+            pointer-events: none;
+        }
+
+        .styled-input.wide {
+            width: 650px;
+            max-width: 100%;
+        }
+
+        input,
+        textarea {
+            padding: 30px;
+            border: 0;
+            width: 100%;
+            font-size: 1rem;
+            background-color: white;
+            color: white;
+            border-radius: 30px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 0;
+        }
+
+        input:focus~span,
+        textarea:focus~span {
+            width: 100%;
+            -webkit-transition: all 0.075s ease;
+            transition: all 0.075s ease;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 15em;
+        }
+
+        .input-container {
+            width: 650px;
+            max-width: 100%;
+            margin: 20px auto 25px auto;
+        }
+
+        input[type=checkbox]+label {
+            color: #ccc;
+            font-style: italic;
+        }
+
+        input[type=checkbox]:checked+label {
+            color: #f00;
+            font-style: normal;
+        }
+
+        .footer-basic {
+            padding: 30px 0;
+            background-color: #070606;
+            color: #4b4c4d;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+        .footer-basic .copyright {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frontimage" id="Home">
+        <header>
+            <div class="container">
+                <div class="logo">
+                    NCF<br>foundation
+                </div>
+                <nav class="menu-bar">
+                    <label for="show-menu" class="show-menu"><span>Menu</span>
+                        <div class="lines"></div>
+                    </label>
+                    <input type="checkbox" id="show-menu">
+                    <ul id="menu">
+                        <li><a href="#Home">Home</a></li>
+                        <li><a href="#aboutus">About us & donate</a></li>
+                        <li><a href="#program">Programs</a></li>
+                        <li><a href="#contactsection">Contact</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </header>
+        <div class="container">
+            <h1>
+                <span>Every</span> good <span>act</span> counts<span>!!!</span>
+            </h1>
+            <p> We, <span>"the NCF foundation" </span>helps children suffering from cancer. If anyone feels like, please
+                do donate. It genuinely might save someone! Any amount, no matter how small,will deeply appreciated and
+                is much needed!!! </p>
+        </div>
+    </div>
+    <section class="fullcontainer" id="aboutus">
+        <div class="box">
+            <h1>Lets help the needy</h1>
+            <p>9.6 million people die from cancer every year. India ranks third in cancer cases after China and the US.
+                This makes cancer the second most common cause of death in India.Donate to patients suffering from
+                cancer so that they can receive access to medical support like chemotherapy, radiation and quality
+                nutrition. Give them a chance to fight.</p>
+            <!-- <button onclick="window.location='page2.ejs';">Donate now"</button> -->
+            <!-- <br><button>Donate now</button> -->
+            <div class="btn">
+                <div class="donatetitle">
+                    Donate now
+                </div>
+                <div class="pay">
+                    <form action="payment" method="POST">
+                        <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="<%= key %>"
+                            data-amount="10000" data-currency="inr" data-name="Donate for cancer children"
+                            data-description="Be the change you want to see in world" data-locale="auto">
+                            </script>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="programs" id="program">
+        <div class="container">
+            <h1 class="title">Our past programs</h1>
+        </div>
+        <div class="boxcontainer">
+            <div class="programbox">
+                <img
+                    src="https://images.ctfassets.net/xct4vv2g1nhc/3kEq6hGNjBKpKoqZoAg06y/c91fed4c091b610644a8d9af30b8a242/shutterstock_279709709-copy-3rAI5.jpg?w=1200&q=50">
+                <div class="programinfo">
+                    <h1> Donated for kimotherapy</h1>
+                    <p> Total Children benefited:<span>10453</span></p>
+                </div>
+            </div>
+            <div class="programbox">
+                <img
+                    src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9uYXRpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80">
+                <div class="programinfo">
+                    <h1> Donated for stationary kits</h1>
+                    <p> Total Children benefited:<span>11486</span></p>
+                </div>
+            </div>
+            <div class="programbox">
+                <img
+                    src="https://plan-uk.org/sites/default/files/styles/gallery_image/public/Images/Article/plan-uk-make-a-donation-children-smiling.jpg?itok=PsB8TFpg">
+                <div class="programinfo">
+                    <h1> Donated for medicines</h1>
+                    <p> Total Children benefited:<span>9065</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact" id="contactsection">
+        <div class="contactus">
+            <h1>Contact us</h1>
+        </div>
+        <div class="contain">
+            <div class="contactInfo">
+                <div class="box">
+                    <div class="icon">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>
+                            14 Tilak Road,Pune-410505
+                        </p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Email </h3>
+                        <p>
+                            ncfsocialfoundation@gmail.com
+                        </p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Phone no</h3>
+                        <p>
+                            020-564-9087
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <form>
+                <div class="row input-container">
+                    <div class="col-xs-12">
+                        <div class="styled-input wide">
+                            <input type="text" required />
+                            <label>Full Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input">
+                            <input type="text" required />
+                            <label>Email</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input" style="float:right;">
+                            <input type="text" required />
+                            <label>Phone Number</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="styled-input wide">
+                            <textarea required></textarea>
+                            <label>Your query</label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm">Submit query</button>
+                </div>
+            </form>
+    </section>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
+                        class="icon ion-social-snapchat"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
+            </div>
+
+            <p class="copyright">NCF © 2019</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
